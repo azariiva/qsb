@@ -6,7 +6,7 @@
 /*   By: torange <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/19 18:07:12 by torange           #+#    #+#             */
-/*   Updated: 2019/08/19 19:32:49 by lhitmonc         ###   ########.fr       */
+/*   Updated: 2019/08/19 20:27:38 by lhitmonc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 void	ft_putchar(int stream, char c)
 {
-	write (stream, &c, 1);
+	write(stream, &c, 1);
 }
