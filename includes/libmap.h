@@ -6,7 +6,7 @@
 /*   By: blinnea <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/19 17:32:46 by blinnea           #+#    #+#             */
-/*   Updated: 2019/08/19 19:06:17 by blinnea          ###   ########.fr       */
+/*   Updated: 2019/08/19 19:30:26 by blinnea          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,7 @@ typedef struct	s_map
 int				get_map_height_eof(int stream, t_map *map);
 int				get_map_length(int *stream, t_map *map);
 int				get_map_body(int stream, t_map *map);
+t_map			*get_map(int stream);
+void			print_map(int stream, t_map *map);
 
 #endif
