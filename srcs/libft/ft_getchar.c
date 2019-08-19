@@ -1,19 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   ft_getchar.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: blinnea <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/19 19:18:34 by blinnea           #+#    #+#             */
-/*   Updated: 2019/08/19 19:24:16 by blinnea          ###   ########.fr       */
+/*   Created: 2019/08/19 19:21:48 by blinnea           #+#    #+#             */
+/*   Updated: 2019/08/19 19:23:36 by blinnea          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putstr(char *str)
+char	ft_getchar(int stream)
 {
-	while (*str)
-		ft_putchar(*str++);
+	char c;
+
+	if (read(stream, &c, 1) <= 0)
+		return (0);
+	return (c);
 }
+
