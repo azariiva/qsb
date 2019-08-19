@@ -1,18 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar.c                                       :+:      :+:    :+:   */
+/*   is_correct_symbol.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: torange <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: lhitmonc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/19 18:07:12 by torange           #+#    #+#             */
-/*   Updated: 2019/08/19 19:32:49 by lhitmonc         ###   ########.fr       */
+/*   Created: 2019/08/19 20:00:45 by lhitmonc          #+#    #+#             */
+/*   Updated: 2019/08/19 20:08:09 by lhitmonc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "libmap.h"
 
-void	ft_putchar(int stream, char c)
+int	is_correct_sym(char c)
 {
-	write (stream, &c, 1);
+	if (c && c != '\n')
+		return (OK);
+	return (ERR);
 }
