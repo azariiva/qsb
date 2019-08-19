@@ -6,7 +6,7 @@
 /*   By: fhilary <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/19 21:08:19 by fhilary           #+#    #+#             */
-/*   Updated: 2019/08/19 21:13:29 by fhilary          ###   ########.fr       */
+/*   Updated: 2019/08/19 21:27:24 by blinnea          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ int		get_map_body(int stream, t_map *map)
 				return (ERR);
 			++j;
 		}
+		if (ft_getchar(stream) != '\n')
+			return (ERR);
 		++i;
 	}
-	if (ft_getchar(stream) != '\n')
-		return (ERR);
 	return (OK);
 }
