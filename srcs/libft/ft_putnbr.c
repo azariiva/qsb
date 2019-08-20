@@ -1,31 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: blinnea <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/19 15:28:23 by blinnea           #+#    #+#             */
-/*   Updated: 2019/08/20 15:48:14 by blinnea          ###   ########.fr       */
+/*   Created: 2019/08/20 15:50:37 by blinnea           #+#    #+#             */
+/*   Updated: 2019/08/20 15:51:48 by blinnea          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
+void	ft_help_putnbr(int stream, unsigned int nb)
+{
+	if (nb != 0)
+	{
+		ft_help_putnbr(stream, nb / 10);
+		ft_putchar(stream, nb % 10 + '0');
+	}
+}
 
-# define LIBFT_H
-
-# include <unistd.h>
-# include <stdlib.h>
-# include <fcntl.h>
-
-
-# define STDIN 0
-# define STDOUT 1
-# define STDERR 2
-
-void	ft_putchar(int stream, char c);
-char	ft_getchar(int stream);
-void	ft_putstr(int stream, char *str);
-void	ft_putnbr(int stream, unsigned int nbr);
-
-#endif
+void	ft_putnbr(int stream, unsigned int nb)
+{
+	if (nb != 0)
+		ft_help_putnbr(stream, nb);
+	else
+		ft_putchar(stream, '0');
+}
