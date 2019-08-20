@@ -12,11 +12,12 @@ int main(int argc, char **argv)
     while (i < argc)
     {
         file = open(argv[i], O_RDONLY);
-        printf("gml: %d\n", get_map_length(&file, map, argv[i]));
         printf("gmhe: %d\n", get_map_height_eof(file, map));
+        printf("Map H: %zu\n", map->height);
+        printf("gml: %d\n", get_map_length(&file, map, argv[i]));
+        printf("Map L: %zu\n", map->length);
         close(file);
         i++;
     }
     return (0);
-    
 }
