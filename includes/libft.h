@@ -6,7 +6,7 @@
 /*   By: blinnea <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/19 15:28:23 by blinnea           #+#    #+#             */
-/*   Updated: 2019/08/19 20:29:09 by lhitmonc         ###   ########.fr       */
+/*   Updated: 2019/08/20 14:20:44 by blinnea          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 
 # include <unistd.h>
 # include <stdlib.h>
+# include <fcntl.h>
+
 
 # define STDIN 0
 # define STDOUT 1
