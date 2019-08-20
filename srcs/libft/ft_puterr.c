@@ -1,20 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_correct_symbol.c                                :+:      :+:    :+:   */
+/*   ft_puterr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lhitmonc <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: blinnea <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/19 20:00:45 by lhitmonc          #+#    #+#             */
-/*   Updated: 2019/08/20 19:23:09 by blinnea          ###   ########.fr       */
+/*   Created: 2019/08/20 19:32:28 by blinnea           #+#    #+#             */
+/*   Updated: 2019/08/20 19:48:15 by blinnea          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libmap.h"
+#include "libft.h"
 
-int	is_correct_sym(char c)
+void	ft_puterr(int errcode)
 {
-	if (c && c != '\n')
-		return (OK);
-	return (MAPERR);
+	if (errcode == ALLERR)
+		ft_putstr(STDERR, "allocation error\n");
+	else if (errcode == FILERR)
+		ft_putstr(STDERR, "file error\n");
+	else if (errcode == MAPERR)
+		ft_putstr(STDERR, "map error\n");
 }

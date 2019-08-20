@@ -6,7 +6,7 @@
 /*   By: blinnea <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/19 19:18:34 by blinnea           #+#    #+#             */
-/*   Updated: 2019/08/19 19:37:15 by lhitmonc         ###   ########.fr       */
+/*   Updated: 2019/08/20 19:47:33 by blinnea          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,5 @@
 void	ft_putstr(int stream, char *str)
 {
 	while (*str)
-		ft_putchar(stream, (*str)++);
+		ft_putchar(stream, *str++);
 }

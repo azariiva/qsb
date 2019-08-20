@@ -6,7 +6,7 @@
 /*   By: blinnea <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/19 17:32:46 by blinnea           #+#    #+#             */
-/*   Updated: 2019/08/20 15:46:26 by blinnea          ###   ########.fr       */
+/*   Updated: 2019/08/20 20:31:31 by blinnea          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,7 @@
 # define LIBMAP_H
 
 # include "libft.h"
-# include <fcntl.h>
-
-# define OK 0
-# define ERR -1
-# define ALLERR -2
-# define FILERR -3
-# define MAPERR -4
+# include "liblist.h"
 
 typedef struct	s_map
 {
@@ -30,8 +24,8 @@ typedef struct	s_map
 	char		empty;
 	char		obstacle;
 	char		filled;
-	int			*prev_line;
-	int			*cur_line;
+	size_t		*prev_line;
+	size_t		*curr_line;
 }				t_map;
 
 typedef struct	s_coords
@@ -43,7 +37,8 @@ typedef struct	s_coords
 
 int				is_correct_sym(char c);
 int				get_map_height_eof(int stream, t_map *map);
-int				get_map_length(int *stream, t_map *map, char *filename);
-int				make_map(char *filename, t_map **map);
+int				make_map_lines(t_map *map);
+int				get_map_line(int stream, t_map *map);
+int				free_map(t_map *map);
 
 #endif

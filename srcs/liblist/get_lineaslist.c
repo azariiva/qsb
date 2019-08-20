@@ -6,36 +6,32 @@
 /*   By: blinnea <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/20 18:21:30 by blinnea           #+#    #+#             */
-/*   Updated: 2019/08/20 18:46:19 by blinnea          ###   ########.fr       */
+/*   Updated: 2019/08/20 20:18:47 by blinnea          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "liblist.h"
 
-t_list	*get_lineaslist(int stream)
+int	get_lineaslist(int stream, t_list **head)
 {
 	char	c;
-	t_list	*head;
 	t_list	*ptr;
 
-	if ((c = ft_getchar(stream)) && c != '\n' && (head = ft_create_elem(c)))
+	*head = NULL;
+	if ((c = ft_getchar(stream)) && c != '\n')
 	{
-		ptr = head;
+		if (!(*head = ft_create_elem(c)))
+			return (ALLERR);
+		ptr = *head;
 		while ((c = ft_getchar(stream)) != '\n')
 		{
-			if (!c)
-			{
-				free_list(head);
-				return (NULL);
-			}
-			if (!(ptr->next = ft_create_elem(c)))
-			{
-				free_list(head);
-				return (NULL);
-			}
+			if (!c && !free_list(*head))
+				return (MAPERR);
+			if (!(ptr->next = ft_create_elem(c)) && !free_list(*head))
+				return (ALLERR);
 			ptr = ptr->next;
 		}
-		return (head);
+		return (OK);
 	}
-	return (NULL);
+	return (MAPERR);
 }

@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_correct_symbol.c                                :+:      :+:    :+:   */
+/*   free_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lhitmonc <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: blinnea <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/19 20:00:45 by lhitmonc          #+#    #+#             */
-/*   Updated: 2019/08/20 19:23:09 by blinnea          ###   ########.fr       */
+/*   Created: 2019/08/20 19:15:11 by blinnea           #+#    #+#             */
+/*   Updated: 2019/08/20 20:22:53 by blinnea          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libmap.h"
 
-int	is_correct_sym(char c)
+int	free_map(t_map *map)
 {
-	if (c && c != '\n')
-		return (OK);
-	return (MAPERR);
+	free(map->prev_line);
+	free(map->curr_line);
+	return (OK);
 }
