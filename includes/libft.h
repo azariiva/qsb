@@ -6,7 +6,7 @@
 /*   By: blinnea <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/19 15:28:23 by blinnea           #+#    #+#             */
-/*   Updated: 2019/08/20 19:23:39 by blinnea          ###   ########.fr       */
+/*   Updated: 2019/08/20 21:04:56 by blinnea          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 
 # include <unistd.h>
 # include <fcntl.h>
+
+# define MIN(a,b) (a < b ? a : b)
 
 /*
  ** Standart streams.

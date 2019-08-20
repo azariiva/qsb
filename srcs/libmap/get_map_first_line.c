@@ -6,34 +6,38 @@
 /*   By: blinnea <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/20 18:52:08 by blinnea           #+#    #+#             */
-/*   Updated: 2019/08/20 21:09:02 by blinnea          ###   ########.fr       */
+/*   Updated: 2019/08/20 21:07:47 by blinnea          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libmap.h"
 
-int	get_map_line(int stream, t_map *map)
+int	get_map_first_line(int stream, t_map *map)
 {
+	t_list	*head;
+	t_list	*ptr;
+	int		errcode;
 	size_t	i;
-	char c;
 
-	if ((c = ft_getchar(stream)) == map->empty)
-		map->curr_line[0] = 1;
-	else if (c == map->obstacle)
-		map->curr_line[0] = 0;
-	else
-		return (MAPERR);
-	i = 1;
+	if ((errcode = get_lineaslist(stream, &head)) && !free_list(head))
+		return (errcode);
+	map->length = get_listsize(head);
+	if ((errcode = make_map_lines(map)))
+		return (errcode | free_list(head));
+	i = 0;
+	ptr = head;
 	while (i < map->length)
 	{
-		if ((c = ft_getchar(stream)) == map->empty)
-			get_map_cell(map, i++);
-		else if (c == map->obstacle)
+		if (ptr->data == map->empty)
+			map->curr_line[i++] = 1;
+		else if (ptr->data == map->obstacle)
 			map->curr_line[i++] = 0;
-		else
-			return (MAPERR);
+		else if (!free_list(head))
+			return (MAPERR | free_map(map));
+		ptr = ptr->next;
 	}
-	if (ft_getchar(stream) != '\n')
-		return (MAPERR);
-	return (OK);
+	i = 0;
+	while (i < map->length)
+		map->prev_line[i++] = 0;
+	return (free_list(head));
 }

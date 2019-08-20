@@ -6,22 +6,62 @@
 /*   By: blinnea <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/19 20:53:03 by blinnea           #+#    #+#             */
-/*   Updated: 2019/08/19 22:12:15 by blinnea          ###   ########.fr       */
+/*   Updated: 2019/08/20 21:34:32 by blinnea          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libmap.h"
+#include <stdio.h>
 
 int	main(int argc, char **argv)
 {
-	t_map	*map;
-	char	*filename;
-	int		file;
-	
-	filename = argv[1];
-	file = open(filename, O_RDONLY);
-	if ((map = get_map(&file, filename)) != NULL)
-		print_map(STDOUT, map);
-	close(file);
+	t_list		*head;
+	int			stream;
+	int			i;
+	t_map		*map;
+	t_coords	*coords;
+	int			errcode;
+	int			area;
+	size_t		j;
+
+	map = (t_map *)malloc(sizeof(t_map));
+	i = 1;
+	while (i < argc)
+	{
+		if ((stream = open(argv[i], O_RDONLY)) <= 0)
+			ft_puterr(FILERR);
+		else if ((errcode = get_map_height_eof(stream, map)) || \
+				(errcode = get_map_first_line(stream, map)))
+		{
+			ft_puterr(errcode);
+			close(stream);
+		}
+		else if (!(errcode = create_coords(&coords)))
+		{
+			j = 1;
+			find_max_coords(coords, map, 0);
+			find_max_coords(coords, map, j);
+			while (j < map->height)
+			{
+				swap_map_lines(map);
+				if ((errcode = get_map_line(stream, map)))
+				{
+					ft_puterr(errcode);
+					return (0);
+				}
+				find_max_coords(coords, map, j);
+				++j;
+			}
+			printf("%zu %zu %zu", coords->i, coords->j, coords->area);
+			free_map(map);
+			close(stream);
+		}
+		else
+		{
+			ft_puterr(errcode);
+			close(stream);
+		}
+		++i;
+	}
 	return (0);
 }
