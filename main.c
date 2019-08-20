@@ -6,7 +6,7 @@
 /*   By: blinnea <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/19 20:53:03 by blinnea           #+#    #+#             */
-/*   Updated: 2019/08/20 21:34:32 by blinnea          ###   ########.fr       */
+/*   Updated: 2019/08/20 22:11:01 by blinnea          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,14 +45,13 @@ int	main(int argc, char **argv)
 			{
 				swap_map_lines(map);
 				if ((errcode = get_map_line(stream, map)))
-				{
-					ft_puterr(errcode);
-					return (0);
-				}
+					break;
 				find_max_coords(coords, map, j);
 				++j;
 			}
-			printf("%zu %zu %zu", coords->i, coords->j, coords->area);
+			if (!errcode)
+				printf("%zu %zu %zu\n", coords->i, coords->j, coords->area);
+			ft_puterr(errcode);
 			free_map(map);
 			close(stream);
 		}
