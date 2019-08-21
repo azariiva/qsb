@@ -1,16 +1,4 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   fill_charmap_square.c                              :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: blinnea <marvin@42.fr>                     +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/21 14:53:18 by blinnea           #+#    #+#             */
-/*   Updated: 2019/08/21 19:37:15 by blinnea          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-#include "libcharmap.h"
+§#include "libcharmap.h"
 
 int	fill_charmap_square(t_coords *coords, t_map *map, char **charmap)
 {
