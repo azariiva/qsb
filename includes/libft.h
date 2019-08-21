@@ -6,7 +6,7 @@
 /*   By: blinnea <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/19 15:28:23 by blinnea           #+#    #+#             */
-/*   Updated: 2019/08/20 21:04:56 by blinnea          ###   ########.fr       */
+/*   Updated: 2019/08/21 21:40:58 by blinnea          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,6 @@
 
 void	ft_putchar(int stream, char c);
 char	ft_getchar(int stream);
-void	ft_putstr(int stream, char *str);
-void	ft_putnbr(int stream, unsigned int nbr);
 void	ft_puterr(int errcode);
 
 #endif
