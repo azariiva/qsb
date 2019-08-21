@@ -1,30 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   find_max_coords.c                                  :+:      :+:    :+:   */
+/*   libcharmap.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: blinnea <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/20 21:18:51 by blinnea           #+#    #+#             */
-/*   Updated: 2019/08/21 14:36:30 by blinnea          ###   ########.fr       */
+/*   Created: 2019/08/21 14:39:52 by blinnea           #+#    #+#             */
+/*   Updated: 2019/08/21 14:58:19 by blinnea          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libmap.h"
+#ifndef LIBCHARMAP_H
 
-void	find_max_coords(t_coords *coords, t_map *map, size_t height)
-{
-	size_t	i;
+# define LIBCHARMAP_H
 
-	i = 0;
-	while (i < map->length)
-	{
-		if (map->curr_line[i] > coords->area)
-		{
-			coords->area = map->curr_line[i];
-			coords->i = i;
-			coords->j = height;
-		}
-		++i;
-	}
-}
+# include "libmap.h"
+
+char	**create_charmap(t_map *map);
+void	write_charmap_line(t_map *map, char **charmap, size_t height);
+void	fill_charmap_square(t_coords *coords, t_map *map, char **charmap);
+void	free_charmap(char **charmap, size_t height);
+void	print_charmap(t_map *map, char **charmap);
+
+#endif

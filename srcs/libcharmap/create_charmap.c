@@ -1,30 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   find_max_coords.c                                  :+:      :+:    :+:   */
+/*   create_charmap.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: blinnea <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/20 21:18:51 by blinnea           #+#    #+#             */
-/*   Updated: 2019/08/21 14:36:30 by blinnea          ###   ########.fr       */
+/*   Created: 2019/08/21 14:43:28 by blinnea           #+#    #+#             */
+/*   Updated: 2019/08/21 15:11:08 by blinnea          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libmap.h"
+#include "libcharmap.h"
 
-void	find_max_coords(t_coords *coords, t_map *map, size_t height)
+char	**create_charmap(t_map *map)
 {
+	char	**charmap;
 	size_t	i;
 
+	if (!(charmap = (char **)malloc(map->height * sizeof(char *))))
+		return (NULL);
 	i = 0;
-	while (i < map->length)
+	while (i < map->height)
 	{
-		if (map->curr_line[i] > coords->area)
+		if (!(charmap[i] = (char *)malloc(map->length * sizeof(char))))
 		{
-			coords->area = map->curr_line[i];
-			coords->i = i;
-			coords->j = height;
+			free_charmap(charmap, i);
+			return NULL;
 		}
 		++i;
 	}
+	return (charmap);
 }
