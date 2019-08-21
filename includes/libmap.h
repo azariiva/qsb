@@ -6,7 +6,7 @@
 /*   By: blinnea <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/19 17:32:46 by blinnea           #+#    #+#             */
-/*   Updated: 2019/08/20 21:16:21 by blinnea          ###   ########.fr       */
+/*   Updated: 2019/08/21 17:06:29 by blinnea          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,15 +35,15 @@ typedef struct	s_coords
 	size_t	area;
 }				t_coords;
 
-int				create_coords(t_coords **c);
+int				zerofy_coords(t_coords *coords);
 int				is_correct_sym(char c);
 int				get_map_height_eof(int stream, t_map *map);
 int				make_map_lines(t_map *map);
 int				get_map_first_line(int stream, t_map *map);
-int				get_map_line(int stream, t_map *map);
-void			swap_map_lines(t_map *map);
+int				get_map_line(int stream, t_map *map, char *line);
+int				swap_map_lines(t_map *map);
 void			get_map_cell(t_map *map, size_t i);
-void			find_max_coords(t_coords *coords, t_map *map, size_t height);
+int				find_max_coords(t_coords *coords, t_map *map, size_t height);
 int				free_map(t_map *map);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: blinnea <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/19 20:53:03 by blinnea           #+#    #+#             */
-/*   Updated: 2019/08/21 15:18:27 by blinnea          ###   ########.fr       */
+/*   Updated: 2019/08/21 19:26:28 by blinnea          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,52 +15,31 @@
 
 int	main(int argc, char **argv)
 {
-	t_list		*head;
 	int			stream;
 	int			i;
 	t_map		*map;
 	t_coords	*coords;
-	int			errcode;
-	char		**charmap;
-	size_t		j;
 
-	map = (t_map *)malloc(sizeof(t_map));
-	i = 1;
-	while (i < argc)
+	if (!(map = (t_map *)malloc(sizeof(t_map))) || \
+			!(coords = (t_coords *)malloc(sizeof(t_coords))))
+	{
+		ft_puterr(ALLERR);
+		exit(EXIT_FAILURE);
+	}
+	i = 0;
+	while (++i < argc)
 	{
 		if ((stream = open(argv[i], O_RDONLY)) <= 0)
-			errcode = FILERR;
-		else if ((errcode = get_map_height_eof(stream, map)) || \
-				(errcode = get_map_first_line(stream, map)))
-			;
-		else if (!(charmap = create_charmap(map)))
-			errcode = ALLERR;
-		else if (!(errcode = create_coords(&coords)))
+			ft_puterr(FILERR);
+		else
 		{
-			j = 1;
-			write_charmap_line(map, charmap, 0);
-			find_max_coords(coords, map, 0);
-			while (j < map->height)
-			{
-				swap_map_lines(map);
-				if ((errcode = get_map_line(stream, map)))
-					break;
-				write_charmap_line(map, charmap, j);
-				find_max_coords(coords, map, j);
-				++j;
-			}
-			if (!errcode)
-			{
-				fill_charmap_square(coords, map, charmap);
-				print_charmap(map, charmap);
-			}
-			free_charmap(charmap, map->height);
-			free(coords);
-			free_map(map);
+			ft_puterr(process_input(stream, map, coords));
+			close(stream);
 		}
-		ft_puterr(errcode);
-		close(stream);
-		++i;
+		if (i != argc - 1)
+			ft_putchar(STDOUT, '\n');
 	}
-	return (0);
+	free(map);
+	free(coords);
+	exit(EXIT_SUCCESS);
 }
